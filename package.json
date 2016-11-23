@@ -1,0 +1,53 @@
+{
+  "name": "KObservableViewmodel",
+  "version": "1.2.1",
+  "description": "A Library to store and create viewmodels along with a single instance based model",
+  "keywords": [
+    "Object",
+    "Array",
+    "Bindable Data",
+    "Observable",
+    "Data Binding",
+    "Data Change Events"
+  ],
+  "author": {
+    "name": "Keleko34",
+    "email": "gregory.guidero@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Gregory Guidero"
+    }
+  ],
+  "main": "index",
+  "license": {
+    "type": "MIT",
+    "url": "http://en.wikipedia.org/wiki/MIT_License"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/keleko34/KObservableViewmodel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/keleko34/KObservableViewmodel/issues"
+  },
+  "devDependencies": {
+    "K_Tasks": "^0.4.7"
+  },
+  "scripts": {
+    "installer": "npm i git+https://github.com/keleko34/gulp.git -g && npm i && bower i",
+    "i": "npm i git+https://github.com/keleko34/gulp.git -g && npm i && bower i",
+    "build": "gulp build",
+    "server": "gulp server"
+  },
+  "maintainers": [
+    {
+      "name": "keleko34",
+      "email": "gregory.guidero@gmail.com"
+    }
+  ],
+  "directories": {},
+  "dependencies": {
+    "KObservableData": "^1.2.1"
+  }
+}

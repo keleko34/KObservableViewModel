@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing</title>
+    <script type="text/javascript" src="../KObservableViewmodel/Build/KObservableViewmodel.js"></script>
+  </head>
+  <body>
+    <h1 id="testDiv">Test Title</h1>
+    <input id="testInput" type="text" />
+    <input id="testInputBox" type="checkbox" />
+    <input id="testInputRadio" type="radio" />
+    <textarea id="testTextarea"></textarea>
+    <div id="testDisplay"></div>
+    <script type="text/javascript">
+        var KView = KObservableViewmodel();
+
+        var data = {
+          t:{q:{f:5,w:'yay'}},
+          s:[4244,244,214,[244,[4443,34343]]],
+          d:'cool'
+        };
+
+        function data2(test)
+        {
+          this.info = test;
+          this.sessionStorage = true;
+          this.list = [
+            {name:'timmy',status:'sick'},
+            {name:'bob',status:'ontime'},
+            {name:'taco',status:'brilliant'}
+          ];
+          this.filters = {
+            toUpperCase:function(v){
+              return v.toString().toUpperCase();
+            }
+          };
+        }
+
+        function data3(test)
+        {
+          this.info = test;
+          this.store = true;
+          this.list = [
+            {id:'1',value:5600},
+            {id:'2',value:9200},
+            {id:'3',value:3500}
+          ];
+        }
+
+        KView.register('d1',data)
+        .register('d2',data2)
+        .register('d3',data3);
+
+        var viewmodels = {
+          d1:KView.createViewModel('d1'),
+          d2:KView.createViewModel('d2'),
+          d3:KView.createViewModel('d3')
+        };
+
+        viewmodels.d1.subscribe('t.q.f',function(prop,val,oldVal){
+          console.log('prop: %o, value: %o, oldval: %o',prop,val,oldVal);
+        });
+        console.log(viewmodels.d1);
+        console.log(viewmodels.d2);
+        console.log(viewmodels.d3);
+        viewmodels.d3.list[0].value = 1300;
+        console.log(KView.model());
+    </script>
+  </body>
+</html>
