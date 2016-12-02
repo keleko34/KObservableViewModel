@@ -23,7 +23,7 @@ define(['KObservableData'],function(KData){
 
         KObservableViewmodel.createViewModel = function(name,params,pre,post)
         {
-            if(KB_Model.isRegistered(name))
+            if(KObservableViewmodel.isRegistered(name))
             {
                 var obsv = KData(name),
                     vm = _viewmodels[name];
