@@ -22,21 +22,27 @@ define(['KObservableData'],function(KData){
           if(!pre.localStorage) pre.localStorage = false;
           if(!pre.store) pre.store = false;
 
-          for(var x=0,len=node.attributes.length;x<len;x++)
-          {
-            if(!pre[attributes[x].name]) pre[attributes[x].name] = "";
-          }
-
           /* post all about post set data and pointers */
           if(post === undefined) post = {};
           /* check pointer refs here */
+          var mappedAttrs = [];
           if(node.kb_maps !== undefined)
           {
-            var maps = node.kb_maps,
-                data = node.kb_mapper.kb_viewmodel;
-            for(var x=0,len=maps.length;x<len;x++)
+            mappedAttrs = node.kb_maps.map(function(m){return m.prop});
+          }
+          for(var x=0,len=node.attributes.length;x<len;x++)
+          {
+            var attr = node.attributes[x].name,
+                mapped = mappedAttrs.indexOf(attr);
+            if(mapped !== -1)
             {
-              post[maps[x].prop] = data.getScope(Object.keys(maps[x])[0].key);
+              var map = node.kb_maps[mapped],
+                  data = node.kb_mapper.kb_viewmodel;
+              post[attr] = data.getScope(Object.keys(map.binds)[0].key);
+            }
+            else
+            {
+              post[attr] = node.getAttribute(attr);
             }
           }
 
