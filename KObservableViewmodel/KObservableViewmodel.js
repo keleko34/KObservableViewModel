@@ -9,6 +9,40 @@ define(['KObservableData'],function(KData){
             _ignoreList = ['id','filters','class','sessionStorage','localStorage','store','component'],
             KObservableViewmodel = {};
 
+        function KObservableViewmodel(node,params,pre,post)
+        {
+          var name = node.tagName.toLowerCase();
+
+          if(params === undefined) params = [];
+
+          /* Pre -- all about built in data */
+          if(pre === undefined) pre = {};
+          if(!pre.filters) pre.filters = {};
+          if(!pre.sessionStorage) pre.sessionStorage = false;
+          if(!pre.localStorage) pre.localStorage = false;
+          if(!pre.store) pre.store = false;
+
+          for(var x=0,len=node.attributes.length;x<len;x++)
+          {
+            if(!pre[attributes[x].name]) pre[attributes[x].name] = "";
+          }
+
+          /* post all about post set data and pointers */
+          if(post === undefined) post = {};
+          /* check pointer refs here */
+          if(node.kb_maps !== undefined)
+          {
+            var maps = node.kb_maps,
+                data = node.kb_mapper.kb_viewmodel;
+            for(var x=0,len=maps.length;x<len;x++)
+            {
+              post[maps[x].prop] = data.getScope(Object.keys(maps[x])[0].key);
+            }
+          }
+
+          return KObservableViewmodel.createViewModel(name,params,pre,post);
+        }
+
         KObservableViewmodel.ignore = function(name)
         {
             if(_ignoreList.indexOf(name) === -1) _ignoreList.push(name);
