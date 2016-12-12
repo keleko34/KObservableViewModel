@@ -6,8 +6,7 @@ define(['KObservableData'],function(KData){
     {
         var _model = KData('Model'),
             _viewmodels = {},
-            _ignoreList = ['id','filters','class','sessionStorage','localStorage','store','component'],
-            KObservableViewmodel = {};
+            _ignoreList = ['id','filters','class','sessionStorage','localStorage','store','component'];
 
         function KObservableViewmodel(node,params,pre,post)
         {
