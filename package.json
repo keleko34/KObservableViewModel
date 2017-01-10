@@ -1,6 +1,6 @@
 {
   "name": "KObservableViewmodel",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A Library to store and create viewmodels along with a single instance based model",
   "keywords": [
     "Object",
