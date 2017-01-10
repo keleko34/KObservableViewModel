@@ -20,6 +20,7 @@ define(['KObservableData'],function(KData){
           if(!pre.sessionStorage) pre.sessionStorage = false;
           if(!pre.localStorage) pre.localStorage = false;
           if(!pre.store) pre.store = false;
+          if(!pre.multiple) pre.multiple = false;
 
           /* post all about post set data and pointers */
           if(post === undefined) post = {};
@@ -119,6 +120,22 @@ define(['KObservableData'],function(KData){
                         {
                             if(obsv[keys[x]] !== undefined) obsv.remove(keys[x]);
                             obsv.addPointer(post,keys[x]);
+                          
+                            /* These link listeners from the current object to the pointer object in the case any are added to it */
+                            function linkListeners(action)
+                            {
+                              if(post[action.key]) post[action.key](action.args);
+                            }
+
+                            obsv.addActionListener('addDataListener',linkListeners)
+                            .addActionListener('addDataUpdateListener',linkListeners)
+                            .addActionListener('addDataCreateListener',linkListeners)
+                            .addActionListener('addDataRemoveListener',linkListeners)
+                            .addActionListener('removeDataListener',linkListeners)
+                            .addActionListener('removeDataUpdateListener',linkListeners)
+                            .addActionListener('removeDataCreateListener',linkListeners)
+                            .addActionListener('removeDataRemoveListener',linkListeners)
+                          
                         }
                         else
                         {
