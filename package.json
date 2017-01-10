@@ -48,6 +48,6 @@
   ],
   "directories": {},
   "dependencies": {
-    "KObservableData": "^1.2.4"
+    "KObservableData": "^1.2.5"
   }
 }
