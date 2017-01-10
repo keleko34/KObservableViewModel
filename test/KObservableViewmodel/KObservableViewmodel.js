@@ -124,7 +124,7 @@ define(['KObservableData'],function(KData){
                             /* These link listeners from the current object to the pointer object in the case any are added to it */
                             function linkListeners(action)
                             {
-                              if(post[action.key]) post[action.key](action.args);
+                              if(post[action.type]) post[action.type](action.args);
                             }
 
                             obsv.addActionListener('addDataListener',linkListeners)
