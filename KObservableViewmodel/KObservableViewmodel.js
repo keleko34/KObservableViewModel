@@ -45,7 +45,7 @@ define(['KObservableData'],function(KData){
               post[attr] = node.getAttribute(attr);
             }
           }
-
+          
           return KObservableViewmodel.createViewModel(name,params,pre,post);
         }
 
